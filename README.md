@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-My dotfiles / account setup stuff
+my dotfiles
