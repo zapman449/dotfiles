@@ -74,3 +74,6 @@ if [[ "$HOSTNAME" == "" ]]; then
    HOSTNAME=`hostname`
    HOST=${HOSTNAME%%.*}
 fi
+
+# Fix the annoying 'unity menuentry' line when starting gvim from terminal
+export UBUNTU_MENUPROXY=0
