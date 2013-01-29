@@ -45,6 +45,15 @@ autoload $^fpath/*(N:t)
 #autoload zed
 #autoload run-help
 
+###############################################################################
+# Set history settings
+HISTSIZE=1000
+if (( ! EUID )); then
+    HISTFILE=~/.zsh.history_root
+else
+    HISTFILE=~/.zsh.history
+fi
+SAVEHIST=1000
 
 ###############################################################################
 # Set options
