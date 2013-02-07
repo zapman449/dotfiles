@@ -22,6 +22,8 @@ case $SHELL in
           ;;
 esac
 
+alias gvim='gvim -p'
+
 alias j=jobs
 alias d='dirs -v'
 alias h=history
