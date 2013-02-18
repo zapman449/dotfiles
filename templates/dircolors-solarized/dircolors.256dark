@@ -85,7 +85,7 @@ TERM xterm-debian
 NORMAL 00;38;5;244 # no color code at all
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
-DIR 00;38;5;33 # directory 01;34
+DIR 00;37;5;33 # directory 01;34
 LINK 01;38;5;37 # symbolic link. (If you set this to 'target' instead of a
  # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
@@ -105,36 +105,36 @@ STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writabl
 EXEC 01;38;5;64
 
 ## Archives or compressed (violet + bold for compression)
-.tar    00;38;5;61
-.tgz    01;38;5;61
-.arj    01;38;5;61
-.taz    01;38;5;61
-.lzh    01;38;5;61
-.lzma   01;38;5;61
-.tlz    01;38;5;61
-.txz    01;38;5;61
-.zip    01;38;5;61
-.z      01;38;5;61
-.Z      01;38;5;61
-.dz     01;38;5;61
-.gz     01;38;5;61
-.lz     01;38;5;61
-.xz     01;38;5;61
-.bz2    01;38;5;61
-.bz     01;38;5;61
-.tbz    01;38;5;61
-.tbz2   01;38;5;61
-.tz     01;38;5;61
-.deb    01;38;5;61
-.rpm    01;38;5;61
-.jar    01;38;5;61
-.rar    01;38;5;61
-.ace    01;38;5;61
-.zoo    01;38;5;61
-.cpio   01;38;5;61
-.7z     01;38;5;61
-.rz     01;38;5;61
-.apk    01;38;5;61
+.tar    00;36;5;61
+.tgz    01;36;5;61
+.arj    01;36;5;61
+.taz    01;36;5;61
+.lzh    01;36;5;61
+.lzma   01;36;5;61
+.tlz    01;36;5;61
+.txz    01;36;5;61
+.zip    01;36;5;61
+.z      01;36;5;61
+.Z      01;36;5;61
+.dz     01;36;5;61
+.gz     01;36;5;61
+.lz     01;36;5;61
+.xz     01;36;5;61
+.bz2    01;36;5;61
+.bz     01;36;5;61
+.tbz    01;36;5;61
+.tbz2   01;36;5;61
+.tz     01;36;5;61
+.deb    01;36;5;61
+.rpm    01;36;5;61
+.jar    01;36;5;61
+.rar    01;36;5;61
+.ace    01;36;5;61
+.zoo    01;36;5;61
+.cpio   01;36;5;61
+.7z     01;36;5;61
+.rz     01;36;5;61
+.apk    01;36;5;61
 
 # Image formats (yellow)
 .jpg    00;38;5;136
