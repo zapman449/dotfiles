@@ -1,0 +1,15 @@
+umount /mnt/nas0b00
+umount /mnt/nas0b01
+
+umount /mnt/nas1b00
+umount /mnt/nas1b01
+
+umount /mnt/nas2b00
+umount /mnt/nas2b01
+
+umount /mnt/nas3b00
+umount /mnt/nas3b01
+
+umount /mnt/oldnas1b00
+umount /mnt/oldnas1b01
+

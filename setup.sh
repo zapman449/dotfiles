@@ -5,7 +5,19 @@
 
 homebase=~/programs/dotfiles
 templates=$homebase/templates
+directories=$homebase/directories
 
 for config in $templates/config*.sh ; do
     /bin/bash $config $templates
+done
+
+cd ~
+for dir in $directories ; do
+    if [ -d $d ]; do
+        mydir=`basename $dir`
+        if [ -d ~/${mydir} ]; then
+            rm -rf ~/${mydir}
+	    ln -s $dir
+	fi
+    fi
 done
