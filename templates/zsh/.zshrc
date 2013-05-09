@@ -47,7 +47,7 @@ autoload $^fpath/*(N:t)
 
 ###############################################################################
 # Set history settings
-HISTSIZE=1000
+HISTSIZE=3000
 if (( ! EUID )); then
     HISTFILE=~/.zsh.history_root
 else

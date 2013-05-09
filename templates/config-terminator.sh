@@ -14,4 +14,5 @@ cd ~
 
 [ -L .config/terminator/config ] && rm -fr .config/terminator/config
 [ -d .config/terminator/config ] && rm -fr .config/terminator/config
-ln -s $templates/terminator/config
+mkdir -p .config/terminator
+ln -s $templates/terminator/config .config/terminator
