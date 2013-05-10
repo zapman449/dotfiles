@@ -13,7 +13,7 @@ done
 
 cd ~
 for dir in $directories ; do
-    if [ -d $d ]; do
+    if [ -d $d ]; then
         mydir=`basename $dir`
         if [ -d ~/${mydir} ]; then
             rm -rf ~/${mydir}
