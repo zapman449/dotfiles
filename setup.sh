@@ -12,7 +12,8 @@ for config in $templates/config*.sh ; do
 done
 
 cd ~
-for dir in $directories ; do
+for dir in ${directories}/* ; do
+    #echo $dir
     if [ -d $d ]; then
         mydir=`basename $dir`
         if [ -d ~/${mydir} ]; then
