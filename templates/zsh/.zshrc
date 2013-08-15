@@ -60,7 +60,7 @@ SAVEHIST=1000
 setopt   autocd autolist autopushd autoresume cdablevars clobber completeinword
 setopt   correct correctall extendedglob globdots histignoredups longlistjobs
 setopt   mailwarning menucomplete pushdminus pushdsilent pushdtohome rcquotes 
-setopt   share_history
+#setopt   share_history
 unsetopt bgnice recexact
 
 
