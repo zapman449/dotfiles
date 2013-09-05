@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo before state of lsmod:
+lsmod | egrep "(iwlwifi|mac80211|iwldvm)"
+
+echo removing modules:
+sudo rmmod iwldvm mac80211 iwlwifi cfg80211
+
+echo after state of lsmod:
+lsmod | egrep "(iwlwifi|mac80211|iwldvm)"
+
+echo sleeping 5 seconds:
+sleep 5
+
+echo starting iwldvm:
+sudo modprobe iwldvm
+
+echo final state of lsmod:
+lsmod | egrep "(iwlwifi|mac80211|iwldvm)"
