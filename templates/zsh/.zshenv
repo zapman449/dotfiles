@@ -77,3 +77,6 @@ fi
 
 # Fix the annoying 'unity menuentry' line when starting gvim from terminal
 export UBUNTU_MENUPROXY=0
+
+# setup virtualenvs
+export WORKON_HOME=/home/jprice/.virtualenvs
