@@ -36,6 +36,8 @@ alias lh='ls -lh'
 alias la='ls -lAF'
 alias lla='ls -lA'
 
+alias grep='grep --color=auto'
+
 # Term variable settings
 alias ansi="export TERM=ansi;clear"
 alias vt100="export TERM=vt100;clear"
