@@ -80,3 +80,4 @@ export UBUNTU_MENUPROXY=0
 
 # setup virtualenvs
 export WORKON_HOME=/home/jprice/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh

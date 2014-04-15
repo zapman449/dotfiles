@@ -25,7 +25,12 @@ fignore=(.o .c~ .old .pyc)
 
 ###############################################################################
 # search path for the cd command
-cdpath=(. ~)
+cdpath=(. ~ ~/programs/git)
+
+# found here: http://superuser.com/questions/265547/zsh-cdpath-and-autocompletion
+#zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format %B%d%b        # bold
 
 ###############################################################################
 # Where to look for autoloaded function definitions
@@ -92,6 +97,9 @@ bindkey -v
 #                 '^[[C' vi-forward-char \
 #                 '^[[A' up-line-or-history \
 #                 '^[[B' down-line-or-history
+
+# add incremental history search
+bindkey '^R' history-incremental-search-backward
 
 ###############################################################################
 # The following lines were added by compinstall
