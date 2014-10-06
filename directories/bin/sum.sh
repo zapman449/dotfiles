@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 let counter=0
 let sum=0

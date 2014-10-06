@@ -11,8 +11,8 @@ sudo rmmod cdc_ether usbnet
 echo after state of lsmod:
 lsmod | egrep "(iwlwifi|mac80211|iwldvm)"
 
-echo sleeping 5 seconds:
-sleep 5
+echo sleeping 2 seconds:
+sleep 2
 
 echo starting iwldvm:
 sudo modprobe iwldvm

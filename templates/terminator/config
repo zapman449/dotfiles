@@ -1,26 +1,42 @@
 [global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   title_transmit_bg_color = "#d30102"
   focus = mouse
 [keybindings]
 [profiles]
   [[default]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#002b36"
+    background_image = None
     scrollback_lines = 50000
+    use_system_font = False
     cursor_color = "#eee8d5"
     foreground_color = "#eee8d5"
+    font = Inconsolata Medium 12
+    background_color = "#002b36"
   [[solarized-dark]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#002b36"
+    background_image = None
     scrollback_lines = 50000
+    use_system_font = False
     cursor_color = "#eee8d5"
     foreground_color = "#eee8d5"
+    font = Inconsolata Medium 12
+    background_color = "#002b36"
+  [[large-font]]
+    use_system_font = False
+    font = Monospace 13
+    background_image = None
+  [[LargeFont]]
+    use_system_font = False
+    font = Inconsolata Medium 20
+    background_image = None
   [[solarized-light]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#eee8d5"
     scrollback_lines = 50000
+    background_image = None
     cursor_color = "#002b36"
     foreground_color = "#002b36"
+    background_color = "#eee8d5"
 [layouts]
   [[default]]
     [[[child1]]]
@@ -30,4 +46,214 @@
     [[[window0]]]
       type = Window
       parent = ""
+  [[akamai]]
+    [[[child0]]]
+      position = 0:24
+      type = Window
+      order = 0
+      parent = ""
+      size = 1920, 1176
+    [[[child1]]]
+      labels = None, None, None
+      type = Notebook
+      order = 0
+      parent = child0
+    [[[child10]]]
+      position = 578
+      type = VPaned
+      order = 2
+      parent = child1
+    [[[child3]]]
+      position = 574
+      type = VPaned
+      order = 1
+      parent = child1
+    [[[child4]]]
+      position = 960
+      type = HPaned
+      order = 0
+      parent = child3
+    [[[child11]]]
+      position = 960
+      type = HPaned
+      order = 0
+      parent = child10
+    [[[child14]]]
+      position = 960
+      type = HPaned
+      order = 1
+      parent = child10
+    [[[child7]]]
+      position = 960
+      type = HPaned
+      order = 1
+      parent = child3
+    [[[terminal12]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child11
+      command = ssh bastion4x00
+      type = Terminal
+      order = 0
+    [[[terminal16]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child14
+      command = ssh bastion5x00
+      type = Terminal
+      order = 1
+    [[[terminal13]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child11
+      command = ssh bastion4x00
+      type = Terminal
+      order = 1
+    [[[terminal2]]]
+      profile = solarized-dark
+      group = curl
+      parent = child1
+      command = ""
+      type = Terminal
+      order = 0
+    [[[terminal5]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child4
+      command = ssh bastion4x00
+      type = Terminal
+      order = 0
+    [[[terminal6]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child4
+      command = ssh bastion4x00
+      type = Terminal
+      order = 1
+    [[[terminal9]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child7
+      command = ssh bastion5x00
+      type = Terminal
+      order = 1
+    [[[terminal8]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child7
+      command = ssh bastion5x00
+      type = Terminal
+      order = 0
+    [[[terminal15]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child14
+      command = ssh bastion5x00
+      type = Terminal
+      order = 0
+  [[qaakamai]]
+    [[[child0]]]
+      position = 0:24
+      type = Window
+      order = 0
+      parent = ""
+      size = 1920, 1176
+    [[[child1]]]
+      labels = None, None, None
+      type = Notebook
+      order = 0
+      parent = child0
+    [[[child10]]]
+      position = 578
+      type = VPaned
+      order = 2
+      parent = child1
+    [[[child3]]]
+      position = 574
+      type = VPaned
+      order = 1
+      parent = child1
+    [[[child4]]]
+      position = 960
+      type = HPaned
+      order = 0
+      parent = child3
+    [[[child11]]]
+      position = 960
+      type = HPaned
+      order = 0
+      parent = child10
+    [[[child14]]]
+      position = 960
+      type = HPaned
+      order = 1
+      parent = child10
+    [[[child7]]]
+      position = 960
+      type = HPaned
+      order = 1
+      parent = child3
+    [[[terminal12]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child11
+      command = ssh qabastion4x00
+      type = Terminal
+      order = 0
+    [[[terminal16]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child14
+      command = ssh qabastion5x00
+      type = Terminal
+      order = 1
+    [[[terminal13]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child11
+      command = ssh qabastion4x00
+      type = Terminal
+      order = 1
+    [[[terminal2]]]
+      profile = solarized-dark
+      group = curl
+      parent = child1
+      command = ""
+      type = Terminal
+      order = 0
+    [[[terminal5]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child4
+      command = ssh qabastion4x00
+      type = Terminal
+      order = 0
+    [[[terminal6]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child4
+      command = ssh qabastion4x00
+      type = Terminal
+      order = 1
+    [[[terminal9]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child7
+      command = ssh qabastion5x00
+      type = Terminal
+      order = 1
+    [[[terminal8]]]
+      profile = solarized-dark
+      group = vauth
+      parent = child7
+      command = ssh qabastion5x00
+      type = Terminal
+      order = 0
+    [[[terminal15]]]
+      profile = solarized-dark
+      group = vorigin
+      parent = child14
+      command = ssh qabastion5x00
+      type = Terminal
+      order = 0
 [plugins]
