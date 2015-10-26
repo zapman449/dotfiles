@@ -30,7 +30,8 @@ alias h=history
 #alias grep=egrep
 
 # ls derivitives
-alias ls='ls -F --color=tty'
+#alias ls='ls -F --color=tty'
+alias ls='ls -F'
 alias ll='ls -l'
 alias lh='ls -lh'
 alias la='ls -lAF'
@@ -48,3 +49,5 @@ alias vt320="export TERM=vt320;clear"
 alias clock="while /bin/true ; do date | tr '\012' '\015'; sleep 1; done"
 
 alias sybok="ssh -p 222 sybok.vejr.com"
+
+alias gpt='git push --tags origin master'
