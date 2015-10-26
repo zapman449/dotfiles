@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/jprice/programs/firegraph/client'
-let g:netrw_dirhist_2='/home/jprice'
-let g:netrw_dirhist_3='/home/jprice/programs/git/puppet-environment/prod/modules/aws_dns/manifests'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/jprice/programs/chef/cookbooks/platform-chef/roles'
+let g:netrw_dirhist_2='/Users/jprice/programs/chef/cookbooks/platform-oapi/recipes'
+let g:netrw_dirhist_3='/Users/jprice/programs/chef/cookbooks/platform-redis'
+let g:netrw_dirhist_4='/Users/jprice/programs/chef/cookbooks/platform-redis/recipes'
