@@ -5,10 +5,12 @@
 ###############################################################################
 # set prompts
 
-PROMPT='%@ %B%n@%m%b
+source ~/programs/git/zsh-git-prompt/zshrc.sh
+
+PROMPT='%@ %B%n@%m%b $(git_super_status) ${CHEF_FULL:-} %~
 %(!.# .->)'
 
-RPROMPT=' %~'     # prompt for right side of screen
+#RPROMPT=' %~'     # prompt for right side of screen
 
 ###############################################################################
 # use hard limits, except for a smaller stack and no core dumps
@@ -52,13 +54,21 @@ autoload $^fpath/*(N:t)
 
 ###############################################################################
 # Set history settings
-HISTSIZE=3000
 if (( ! EUID )); then
     HISTFILE=~/.zsh.history_root
 else
     HISTFILE=~/.zsh.history
 fi
-SAVEHIST=1000
+
+# stolen from here: http://www.lowlevelmanager.com/2012/04/zsh-history-extend-and-persist.html
+# and tweaked
+# .zshrc
+## History
+setopt APPEND_HISTORY          # append rather than overwrite history file.
+HISTSIZE=1200                  # lines of history to maintain memory
+SAVEHIST=3000                  # lines of history to maintain in history file.
+setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
+setopt EXTENDED_HISTORY        # save timestamp and runtime information
 
 ###############################################################################
 # Set options
@@ -101,6 +111,10 @@ bindkey -v
 # add incremental history search
 bindkey '^R' history-incremental-search-backward
 
+# rebind ^a to beginning of line and ^e to end of line:
+bindkey '^A' vi-beginning-of-line
+bindkey '^E' vi-end-of-line
+
 ###############################################################################
 # The following lines were added by compinstall
 # run 'compinstall' or if that fails:
@@ -114,14 +128,18 @@ zstyle :compinstall filename '/home/jprice/.zshrc'
 [[ -z $fpath[(r)$_compdir] ]] && fpath=($fpath $_compdir)
 
 autoload -U compinit
-compinit
+compinit -u
 # End of lines added by compinstall
+
+zstyle -s ':completion:*:hosts' hosts _ssh_config
+[[ -r ~/.ssh/config ]] && _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/Host[=\t ]//p'))
+zstyle ':completion:*:hosts' hosts $_ssh_config
 
 ###############################################################################
 # Setup dircolors to be sane
-if [[ -f $HOME/.dir_colors ]]; then
-    eval `dircolors $HOME/.dir_colors`
-fi
+#if [[ -f $HOME/.dir_colors ]]; then
+#    eval `dircolors $HOME/.dir_colors`
+#fi
 
 ###############################################################################
 # source other files of note:  particularly .aliases and .zsh-styles
