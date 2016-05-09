@@ -6,7 +6,7 @@ if [[ "$TERM" == "screen" ]] export TERM=xterm
 
 # basic tmanpath setup
 tmanpath=( $tmanpath /usr/local/opt/coreutils/libexec/gnuman )
-tmanpath=( /usr/man /usr/local/man /usr/lang/man $HOME/man )
+tmanpath=( $tmanpath /usr/man /usr/local/man /usr/lang/man $HOME/man )
 tmanpath=( $tmanpath /usr/openwin/man /usr/dt/man )
 tmanpath=( $tmanpath /usr/X11R6/man )
 tmanpath=( $tmanpath /usr/local/admin/man )
@@ -18,6 +18,7 @@ tmanpath=( $tmanpath /usr/openv/netbackup/bin/goodies/man )
 tmanpath=( $tmanpath /usr/local/home/build/jprice/xemacs/man )
 
 tpath=( ~/bin ~ )
+tpath=( $tpath /Users/jprice/programs/git/homebrew/opt/coreutils/libexec/gnubin )
 tpath=( $tpath /usr/local/opt/coreutils/libexec/gnubin )
 tpath=( $tpath /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )
 tpath=( $tpath /etc /usr/etc /opt/etc /usr/local/etc )

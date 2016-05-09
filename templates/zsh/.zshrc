@@ -5,9 +5,10 @@
 ###############################################################################
 # set prompts
 
-source ~/programs/git/zsh-git-prompt/zshrc.sh
+# source ~/programs/git/zsh-git-prompt/zshrc.sh
 
-PROMPT='%@ %B%n@%m%b $(git_super_status) ${CHEF_FULL:-} %~
+# PROMPT='%@ %B%n@%m%b $(git_super_status) ${CHEF_FULL:-} %~
+PROMPT='%@ %B%n@%m%b %~
 %(!.# .->)'
 
 #RPROMPT=' %~'     # prompt for right side of screen
@@ -145,6 +146,8 @@ zstyle ':completion:*:hosts' hosts $_ssh_config
 # source other files of note:  particularly .aliases and .zsh-styles
 
 #filelist=( ~/.aliases ~/.zsh-styles ~/.ssh_logins ~/.aliases.local )
+
+export PATH=${HOME}/programs/git/homebrew/bin:${PATH}
 
 for file in .aliases .zsh-styles .ssh_logins .aliases.local ; do
    if [[ -f $HOME/$file ]]; then
