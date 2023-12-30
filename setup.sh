@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
+if command -v stow >/dev/null ; then
+    # noop
+    echo >/dev/null
+else
+    echo "please install stow, probably with brew"
+    exit 1
+fi
+
 # ensure the "stow dir" is correct
 cd "${HOME}/dotfiles"
 
