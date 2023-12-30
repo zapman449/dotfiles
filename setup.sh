@@ -5,6 +5,7 @@ set -euo pipefail
 # ensure the "stow dir" is correct
 cd "${HOME}/dotfiles"
 
+stow tmux
 stow wezterm
 stow zsh
 
