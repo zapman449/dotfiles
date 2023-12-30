@@ -13,10 +13,15 @@ fi
 # ensure the "stow dir" is correct
 cd "${HOME}/dotfiles"
 
+echo "---> updating git repo"
+git pull
+
+echo "---> installing tools (phase 1)"
 stow tmux
 stow wezterm
 stow zsh
 
+echo "---> installing tools (phase 2)"
 # need to set target dir for nvim so it doesn't take over the whole ~/.config hierarchy
 [[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
 stow nvim --target="${HOME}/.config/nvim"
