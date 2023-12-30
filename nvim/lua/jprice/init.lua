@@ -33,6 +33,9 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
+-- vim.g.mapleader = ','
+vim.g.mapleader = ';'
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
