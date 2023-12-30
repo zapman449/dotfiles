@@ -1,0 +1,6 @@
+alias up="cd ~/Development/go/src/square/up/"
+alias ccl="cd ~/Development/cloud-cd-lambdas/"
+alias cclu="cd ~/Development/cloud-cd-lambdas/utilities/"
+
+alias baty="bat -l yaml"
+alias batj="bat -l json"
