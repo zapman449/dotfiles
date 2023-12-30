@@ -1,24 +1,13 @@
 #!/bin/bash
 
-# script to setup dotfiles.  Dunno if I should stash this in git or in
-# dropbox yet.
+set -euo pipefail
 
-homebase=~/programs/dotfiles
-templates=$homebase/templates
-directories=$homebase/directories
+# ensure the "stow dir" is correct
+cd "${HOME}/dotfiles"
 
-for config in $templates/config*.sh ; do
-    /bin/bash $config $templates
-done
+stow wezterm
+stow zsh
 
-cd ~
-for dir in ${directories}/* ; do
-    #echo $dir
-    if [ -d $d ]; then
-        mydir=`basename $dir`
-        if [ -d ~/${mydir} ]; then
-            rm -rf ~/${mydir}
-	    ln -s $dir
-	fi
-    fi
-done
+# need to set target dir for nvim so it doesn't take over the whole ~/.config hierarchy
+[[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
+stow nvim --target="${HOME}/.config/nvim"

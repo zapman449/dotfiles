@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo /usr/sbin/networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4

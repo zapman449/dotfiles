@@ -1,8 +1,0 @@
-[ ! -d /mnt/prenas01 ] && mkdir -p /mnt/prenas01
-/bin/mount prenas01:/ /mnt/prenas01
-[ ! -d /mnt/prenas02 ] && mkdir -p /mnt/prenas02
-/bin/mount prenas02:/ /mnt/prenas02
-[ ! -d /mnt/prtnas03 ] && mkdir -p /mnt/prtnas03
-/bin/mount prtnas03p:/ /mnt/prtnas03
-[ ! -d /mnt/prtnas04 ] && mkdir -p /mnt/prtnas04
-/bin/mount prtnas04p:/ /mnt/prtnas04
