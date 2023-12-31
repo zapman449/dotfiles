@@ -12,7 +12,9 @@ fi
 #######################################################
 # load Square specific zshrc; please don't change this bit.
 #######################################################
-source ~/Development/config_files/square/zshrc
+if [[ -f ~/Development/config_files/square/zshrc ]]; then
+    source ~/Development/config_files/square/zshrc
+fi
 #######################################################
 
 # uncomment to automatically `bundle exec` common ruby commands
@@ -21,7 +23,9 @@ source ~/Development/config_files/square/zshrc
 # fi
 
 # load the aliases in config_files files (optional)
-source ~/Development/config_files/square/aliases
+if [[ -f ~/Development/config_files/square/aliases ]]; then
+    source ~/Development/config_files/square/aliases
+fi
 
 ###########################################
 # Feel free to make your own changes below.
@@ -119,7 +123,6 @@ if [ -f '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc' ]; then
     source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
 fi
 
-BREW_PREFIX=$(brew --prefix)
 for gnu_dir in \
             ${BREW_PREFIX}/Cellar/gnu-sed/ \
             ${BREW_PREFIX}/Cellar/gnu-tar/ \
@@ -128,6 +131,9 @@ for gnu_dir in \
             ${BREW_PREFIX}/Cellar/coreutils/ \
             ; do
     
+    if [[ ! -d ${gnu_dir} ]]; then
+        continue
+    fi
     # explicitly call the bsd versions here to avoid confusion
     version_dir=$(/usr/bin/find "${gnu_dir}" -maxdepth 2 -type d -name 'libexec' | /usr/bin/sort -n | /usr/bin/tail -1)
     final_dir=${version_dir}/gnubin
@@ -156,7 +162,9 @@ function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
 
-source /opt/homebrew/Cellar/powerlevel10k/1.19.0/powerlevel10k.zsh-theme
+if [[ -f ${BREW_PREFIX}/Cellar/powerlevel10k/1.19.0/powerlevel10k.zsh-theme ]]; then
+    source ${BREW_PREFIX}/Cellar/powerlevel10k/1.19.0/powerlevel10k.zsh-theme
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -167,7 +175,9 @@ if [[ -f ~/.fzf.zsh ]] ; then
     source ~/.fzf.zsh
 fi
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -f ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
