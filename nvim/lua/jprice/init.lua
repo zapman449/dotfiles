@@ -26,7 +26,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+-- vim.opt.signcolumn = "yes"    -- adds two spaces left of 0 line
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
