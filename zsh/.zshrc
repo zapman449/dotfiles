@@ -1,16 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
 BREW_PREFIX=$(brew --prefix)
-# /opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
-if [[ -r "${BREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-    source "${BREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme"
-elif [[ -r "${BREW_PREFIX}/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme" ]] then
-    source "${BREW_PREFIX}/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme"
-fi
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
 #######################################################
 # load Square specific zshrc; please don't change this bit.

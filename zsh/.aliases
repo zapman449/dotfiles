@@ -4,3 +4,6 @@ alias cclu="cd ~/Development/cloud-cd-lambdas/utilities/"
 
 alias baty="bat -l yaml"
 alias batj="bat -l json"
+
+alias ls="eza -F"
+alias ll="eza -F -l --git"

@@ -25,3 +25,6 @@ echo "---> installing tools (phase 2)"
 # need to set target dir for nvim so it doesn't take over the whole ~/.config hierarchy
 [[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
 stow nvim --target="${HOME}/.config/nvim"
+
+[[ ! -d "${HOME}/.config/starship" ]] && mkdir -p "${HOME}/.config/starship"
+stow starship --target="${HOME}/.config/starship"
