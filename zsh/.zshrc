@@ -1,8 +1,3 @@
-BREW_PREFIX=$(brew --prefix)
-
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
-
 #######################################################
 # load Square specific zshrc; please don't change this bit.
 #######################################################
@@ -24,6 +19,11 @@ fi
 ###########################################
 # Feel free to make your own changes below.
 ###########################################
+
+BREW_PREFIX=$(brew --prefix)
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
 cdpath=(. ~ ~/Development)
 # shamelessly stolen from https://unix.stackexchange.com/questions/175108/when-using-zsh-tab-completion-ignore-cdpath-if-a-local-file-or-directory-matche/175203#175203
@@ -155,10 +155,6 @@ export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
-
-if [[ -f ${BREW_PREFIX}/Cellar/powerlevel10k/1.19.0/powerlevel10k.zsh-theme ]]; then
-    source ${BREW_PREFIX}/Cellar/powerlevel10k/1.19.0/powerlevel10k.zsh-theme
-fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
