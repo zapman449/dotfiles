@@ -3,9 +3,8 @@ local wezterm = require("wezterm")
 local config = {
   font = wezterm.font('JetBrains Mono'),
   pane_focus_follows_mouse = true,
+  color_scheme = 'tokyonight_night',
   keys = {
-    -- Turn off the default CMD-m Hide action, allowing CMD-m to
-    -- be potentially recognized and handled by the tab
     {
       key = 'd',
       mods = 'CMD',
