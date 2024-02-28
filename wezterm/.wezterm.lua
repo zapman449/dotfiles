@@ -4,6 +4,8 @@ local config = {
   font = wezterm.font('JetBrains Mono'),
   pane_focus_follows_mouse = true,
   color_scheme = 'tokyonight_night',
+  -- integrate the tabs into the window title bar
+  window_decorations = "INTEGRATED_BUTTONS|RESIZE",
   keys = {
     {
       key = 'd',
