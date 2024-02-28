@@ -1,3 +1,6 @@
+# enable profiling (NOTE: also requires `zprof` to be called at the bottom
+# zmodload zsh/zprof
+
 #######################################################
 # load Square specific zshrc; please don't change this bit.
 #######################################################
@@ -40,6 +43,7 @@ SAVEHIST=1000000                # Number of history entries to save to disk
 DIRSTACKSIZE=8                  # Depth of directory stack
 # HISTDUP=erase                   # Erase duplicates in the history file
 setopt  append_history          # Append history to the history file (no overwriting)
+setopt  complete_aliases        # tab complete commands even behind aliases
 setopt  extended_history        # Write the history file in the ":start:elapsed;command" format.
 setopt  share_history           # Share history across terminals
 setopt  incappend_history       # Immediately append to the history file, not just when a term is killed
@@ -177,3 +181,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if [[ -f "${HOME}/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
 fi
+
+# report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
+# zprof
