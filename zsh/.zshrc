@@ -46,7 +46,7 @@ setopt append_history          # Append history to the history file (no overwrit
 setopt complete_aliases        # tab complete commands even behind aliases
 setopt extended_history        # Write the history file in the ":start:elapsed;command" format.
 setopt share_history           # Share history across terminals
-setopt incappend_history       # Immediately append to the history file, not just when a term is killed
+setopt inc_append_history      # Immediately append to the history file, not just when a term is killed
 setopt hist_expire_dups_first  # Expire duplicate entries first when trimming history.
 setopt hist_ignore_dups        # Don't record an entry that was just recorded again.
 setopt hist_ignore_space       # Don't record an entry that has a leading space
