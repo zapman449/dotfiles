@@ -37,25 +37,25 @@ zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-
 ##############################################################################
 # TODO: Make history depth infinite
 # NOTE: ZSH can't make history infinite, because it holds all history in memory.  But a million entries is pretty close
-HISTFILE=~/.zsh_history         # Where to save history to disk
-HISTSIZE=1000000                # How many lines of history to keep in memory
-SAVEHIST=1000000                # Number of history entries to save to disk
-DIRSTACKSIZE=8                  # Depth of directory stack
-# HISTDUP=erase                   # Erase duplicates in the history file
-setopt  append_history          # Append history to the history file (no overwriting)
-setopt  complete_aliases        # tab complete commands even behind aliases
-setopt  extended_history        # Write the history file in the ":start:elapsed;command" format.
-setopt  share_history           # Share history across terminals
-setopt  incappend_history       # Immediately append to the history file, not just when a term is killed
-setopt  hist_expire_dups_first  # Expire duplicate entries first when trimming history.
-setopt  hist_ignore_dups        # Don't record an entry that was just recorded again.
-setopt  hist_ignore_space       # Don't record an entry that has a leading space
-setopt  hist_find_no_dups       # Do not display a line previously found.
-setopt  hist_reduce_blanks      # Remove superfluous blanks before recording entry.
-setopt  hist_verify             # Don't execute immediately upon history expansion.
-setopt  auto_pushd              # cd now pushes previous dir onto dirstack
-setopt  pushd_silent            # don't print the dirstack on each cd
-setopt  pushd_to_home           # naked pushd (or cd with autopushd) takes you home
+HISTFILE=~/.zsh_history        # Where to save history to disk
+HISTSIZE=1000000               # How many lines of history to keep in memory
+SAVEHIST=1000000               # Number of history entries to save to disk
+DIRSTACKSIZE=8                 # Depth of directory stack
+# HISTDUP=erase                  # Erase duplicates in the history file
+setopt append_history          # Append history to the history file (no overwriting)
+setopt complete_aliases        # tab complete commands even behind aliases
+setopt extended_history        # Write the history file in the ":start:elapsed;command" format.
+setopt share_history           # Share history across terminals
+setopt incappend_history       # Immediately append to the history file, not just when a term is killed
+setopt hist_expire_dups_first  # Expire duplicate entries first when trimming history.
+setopt hist_ignore_dups        # Don't record an entry that was just recorded again.
+setopt hist_ignore_space       # Don't record an entry that has a leading space
+setopt hist_find_no_dups       # Do not display a line previously found.
+setopt hist_reduce_blanks      # Remove superfluous blanks before recording entry.
+setopt hist_verify             # Don't execute immediately upon history expansion.
+setopt auto_pushd              # cd now pushes previous dir onto dirstack
+setopt pushd_silent            # don't print the dirstack on each cd
+setopt pushd_to_home           # naked pushd (or cd with autopushd) takes you home
 
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 [[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
@@ -69,21 +69,6 @@ autoload -Uz vcs_info
 # zstyle ':vcs_info:*' enable git formats "%s  %r/%S %b (%a) %m%u%c "
 zstyle ':vcs_info:git*' formats "%a %b %m%u%c "
 zstyle ':vcs_info:*' check-for-changes true
-
-# export STARSHIP_CONFIG=/Users/jprice/.config/starship.toml
-# eval "$(starship init zsh)"
-
-# precmd() {
-#     vcs_info
-#     current_context=$(kubectl config current-context | awk 'BEGIN { FS = ":" } ; {$4 = substr($4,4,4) ; $6 = substr($6, 9) ; printf("%s-%s", $6, $4)}')
-# }
-#  
-# setopt PROMPT_SUBST
-# 
-# # NOTE: single quotes around PROMPT strings are required, else vcs_info and others won't refresh.
-# PROMPT='%T %F{green}%n@%m%f %F{red}${current_context}%f %F{yellow}${vcs_info_msg_0_}%f
-#  %F{yellow}%#%F{red}%_%f '
-# RPROMPT='%~ : %?'
 
 # setup partial word completion (completion from middle of word)
 zstyle ':completion:*' completer _complete
@@ -121,6 +106,8 @@ if [ -f '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc' ]; then
     source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
 fi
 
+# use gnu CLI tools under their "natural" names
+# Brew puts them in interesting places... this efficiently puts the right version early in $PATH
 for gnu_dir in \
             ${BREW_PREFIX}/Cellar/gnu-sed/ \
             ${BREW_PREFIX}/Cellar/gnu-tar/ \
@@ -146,25 +133,16 @@ for gnu_dir in \
 done
 export PATH
 
-if [[ -f /Users/jprice/Development/KubiScan/KubiScan.py ]] ; then
-    alias kubiscan="python3 /Users/jprice/Development/KubiScan/KubiScan.py"
-fi
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# include KREW in kubectl:
-export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 
 function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 export KUBE_EDITOR=/opt/homebrew/bin/nvim
 
+# use fzf for history searching
 if [[ -f ~/.fzf.zsh ]] ; then
     source ~/.fzf.zsh
 fi
@@ -175,8 +153,6 @@ fi
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 if [[ -f "${HOME}/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
