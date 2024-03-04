@@ -88,12 +88,22 @@ bindkey "^[^[[C" forward-word		# option-right-arrow goes forward word (I think t
 bindkey "^[^[[D" backward-word		# option-left-arrow goes backwards word (I think this is alt on a PC keyboard)
 bindkey '^z' push-line-or-edit
 
-if command -v kubectl >/dev/null ; then
-    source <(kubectl completion zsh)
+# if kubectl exists in path, setup lazy loading of the completion config
+if [[ $commands[kubectl] ]]; then
+    kubectl() {
+        unfunction kubectl
+        source <(kubectl completion zsh)
+        kubectl "$@"
+    }
 fi
 
+# if completion for aws in zsh is installed, setup aws for lazy loading of completion config
 if [[ -f /opt/homebrew/share/zsh/site-functions/aws_zsh_completer.sh ]]; then
-    source /opt/homebrew/share/zsh/site-functions/aws_zsh_completer.sh
+    aws() {
+        unfunction aws
+        source /opt/homebrew/share/zsh/site-functions/aws_zsh_completer.sh
+        aws "$@"
+    }
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
