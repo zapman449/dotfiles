@@ -24,3 +24,10 @@ until key release.  NOTE: you have to logout/log-back-in to the mac for this to 
 On the off-chance you need to undo this, run the following (will still need logout/log-back-in):
 
 `defaults write -g ApplePressAndHoldEnabled -bool true`
+
+### Turn off "rearrange spaces"
+
+* System Preferences:
+  * Desktop & Dock
+    * Scroll to "Mission Control"
+      * turn off "Automatically rearrange Spaces based on most recent use"
