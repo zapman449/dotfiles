@@ -17,7 +17,6 @@ echo "---> updating git repo"
 git pull
 
 echo "---> installing tools (phase 1)"
-stow bin
 stow tmux
 stow wezterm
 stow zsh
@@ -29,3 +28,6 @@ stow nvim --target="${HOME}/.config/nvim"
 
 [[ ! -d "${HOME}/.config/starship" ]] && mkdir -p "${HOME}/.config/starship"
 stow starship --target="${HOME}/.config/starship"
+
+[[ ! -d "${HOME}/bin" ]] && mkdir -p "${HOME}/bin"
+stow bin --target="${HOME}/bin"
