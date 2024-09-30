@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ -z "${1:-}" ]]; then
+    echo "USAGE: $0 <seconds_since_epoch>"
+    echo "returns the UTC time of the seconds since epoch timestamp"
+    exit 1
+fi
+
+date -d "@${1}" --utc
+# BSD:
+# date -r "${1}"

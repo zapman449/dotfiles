@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -euo pipefail
+
+cd ~/bin
+
+kubectl_version="${1:-}"
+if [[ -z ${kubectl_version} ]]; then
+    echo "USAGE: $0 <version desired> [link]"
+    echo "Example: $0 v1.23.3"
+fi
+
+if [[ ${kubectl_version} == "v*" ]]; then
+    echo >/dev/null # noop
+else
+    kubectl_version="v${kubectl_version}"
+fi
+
+uname_m=$(/usr/bin/uname -m)
+if [[ ${uname_m} == "arm64" ]]; then
+    arch=arm64
+else
+    arch=amd64
+fi
+
+curl -L -o "kubectl-${arch}-${kubectl_version}"  "https://dl.k8s.io/release/${kubectl_version}/bin/darwin/${arch}/kubectl"
+chmod 755 "kubectl-${arch}-${kubectl_version}"
+
+if [[ ${2:-} == 'link' ]]; then
+    rm -f kubectl
+    ln -s "kubectl-${arch}-${kubectl_version}" kubectl
+    echo "successfully symlinked"
+fi

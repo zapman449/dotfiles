@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euo pipefail
+
+rg "${1}" ~/.zsh_history

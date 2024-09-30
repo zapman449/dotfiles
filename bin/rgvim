@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+rg --files-with-matches -0 "${1}" | xargs -0 -o nvim
+
