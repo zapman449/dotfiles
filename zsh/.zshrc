@@ -166,3 +166,7 @@ fi
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
+
+### The lines in this section are added automatically by salt. Do not modify. ###
+#Default shell configs
+######

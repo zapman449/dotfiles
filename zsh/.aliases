@@ -5,5 +5,18 @@ alias cclu="cd ~/Development/cloud-cd-lambdas/utilities/"
 alias baty="bat -l yaml"
 alias batj="bat -l json"
 
-alias ls="eza -F"
+unalias l
+unalias ll
+unalias ls
+
+# alias ls="eza -F"
 alias ll="eza -F -l --git"
+
+function ls() {
+    if [[ "${1:-}" == "-lart" ]]; then
+        shift
+        eza -F -la --sort newest $*
+    else
+        eza -F $*
+    fi
+}
