@@ -53,6 +53,12 @@ local config = {
       mods = 'CMD',
       action = wezterm.action{ActivatePaneDirection='Next'},
     },
+    -- on cmd-s, send esc, then ':w<enter>'. This makes cmd-s trigger a save action in neovim
+    {
+      key="s",
+      mods="CMD",
+      action = wezterm.action{SendString="\x1b:w\n"}
+    },
   },
   mouse_bindings = {
     {
