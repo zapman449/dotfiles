@@ -17,6 +17,7 @@ echo "---> updating git repo"
 git pull
 
 echo "---> installing tools (phase 1)"
+stow ripgrep
 stow tmux
 stow wezterm
 stow zsh

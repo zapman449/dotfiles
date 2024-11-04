@@ -1,0 +1,9 @@
+# don't search .git dirs
+--glob
+!.git/*
+
+# don't search vendor dirs
+--glob
+!vendor/*
+
+# --smart-case
