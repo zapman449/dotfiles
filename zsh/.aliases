@@ -6,9 +6,9 @@ alias cclu="cd ~/Development/cloud-cd-lambdas/utilities/"
 alias baty="bat -l yaml"
 alias batj="bat -l json"
 
-unalias l
-unalias ll
-unalias ls
+unalias l 2>/dev/null
+unalias ll 2>/dev/null
+unalias ls 2>/dev/null
 
 # alias ls="eza -F"
 alias ll="eza -F -l --git"

@@ -164,6 +164,10 @@ if [[ -f "${HOME}/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
 fi
 
+if [[ -f "${HOME}/.ripgreprc" ]]; then
+    export RIPGREP_CONFIG_PATH=~/.ripgreprc
+fi
+
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
 
