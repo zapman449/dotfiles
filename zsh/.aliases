@@ -21,3 +21,7 @@ function ls() {
         eza -F $*
     fi
 }
+
+function rg() {
+    /opt/homebrew/bin/rg -g '!vendor/' $*
+}
