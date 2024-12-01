@@ -4,6 +4,7 @@
 #######################################################
 # load Square specific zshrc; please don't change this bit.
 #######################################################
+DISABLE_AUTO_NVM_USE=true
 if [[ -f ~/Development/config_files/square/zshrc ]]; then
     source ~/Development/config_files/square/zshrc
 fi
@@ -22,6 +23,13 @@ fi
 ###########################################
 # Feel free to make your own changes below.
 ###########################################
+
+# ghostty integration
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+  ghostty-integration
+  unfunction ghostty-integration
+fi
 
 BREW_PREFIX=$(brew --prefix)
 
@@ -156,9 +164,6 @@ fi
 if [[ -f ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [[ -f "${HOME}/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
@@ -167,6 +172,10 @@ fi
 if [[ -f "${HOME}/.ripgreprc" ]]; then
     export RIPGREP_CONFIG_PATH=~/.ripgreprc
 fi
+
+export NODE_EXTRA_CA_CERTS=/opt/homebrew/etc/ca-certificates/cert.pem
+export COREPACK_NPM_REGISTRY=https://artifactory.global.square/artifactory/api/npm/square-npm/
+export COREPACK_INTEGRITY_KEYS=0
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
