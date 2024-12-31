@@ -25,3 +25,5 @@ keybind = super+alt+right=next_tab
 keybind = super+left=goto_split:previous
 keybind = super+right=goto_split:next
 # TODO: cmd+s sends :w<enter> - keybind = super+s=text:':w??'
+
+# TODO: search scrollback hack
