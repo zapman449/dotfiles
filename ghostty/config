@@ -1,6 +1,14 @@
+### Visual configuration
 # theme = Tomorrow Night Bright
 theme = tokyonight
 window-theme = system
+macos-titlebar-style = tabs
+
+copy-on-select = true
+focus-follows-mouse = true
+font-thicken = true
+macos-non-native-fullscreen = true
+mouse-hide-while-typing = true
 
 # scrollback-limit in bytes, roughly 125,000 lines
 scrollback-limit = 10000000
@@ -9,14 +17,7 @@ shell-integration = zsh
 shell-integration-features = no-cursor
 # note: see zsh/.zshrc "ghostty integration"
 
-copy-on-select = true
-desktop-notifications = false
-focus-follows-mouse = true
-font-thicken = true
-mouse-hide-while-typing = true
-quit-after-last-window-closed = true
-window-new-tab-position = end
-
+### Keybindings
 # super==cmd, alt==opt
 # move between tabs is cmd+alt+arrow
 keybind = super+alt+left=previous_tab
@@ -24,6 +25,14 @@ keybind = super+alt+right=next_tab
 # move between panes is cmd+arrow
 keybind = super+left=goto_split:previous
 keybind = super+right=goto_split:next
-# TODO: cmd+s sends :w<enter> - keybind = super+s=text:':w??'
+# cmd+s sends :w<enter> - so cmd-s works in vim in terminal
+keybind = super+s=text:\x1b:w\n
 
 # TODO: search scrollback hack
+
+### Misc settings
+desktop-notifications = false
+quit-after-last-window-closed = true
+window-new-tab-position = end
+window-save-state = never
+
