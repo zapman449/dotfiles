@@ -8,6 +8,10 @@ if [[ -z "${1:-}" ]]; then
     exit 1
 fi
 
-date -d "@${1}" --utc
+# if input is longer than 10 chars, it's either milliseconds (13 chars) or nanoseconds (19 chars)
+# This will stop working in November 2286ad... 
+input=$(echo "${1}" | cut -c 1-10)
+
+date -d "@${input}" --utc
 # BSD:
 # date -r "${1}"
