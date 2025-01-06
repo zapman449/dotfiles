@@ -23,6 +23,7 @@ else
     arch=amd64
 fi
 
+[[ -f "kubectl-${arch}-${kubectl_version}" ]] && rm -f "kubectl-${arch}-${kubectl_version}"
 curl -L -o "kubectl-${arch}-${kubectl_version}"  "https://dl.k8s.io/release/${kubectl_version}/bin/darwin/${arch}/kubectl"
 chmod 755 "kubectl-${arch}-${kubectl_version}"
 
