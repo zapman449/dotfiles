@@ -1,5 +1,5 @@
 # enable profiling (NOTE: also requires `zprof` to be called at the bottom
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
 #######################################################
 # load Square specific zshrc; please don't change this bit.
@@ -178,8 +178,12 @@ export COREPACK_NPM_REGISTRY=https://artifactory.global.square/artifactory/api/n
 export COREPACK_INTEGRITY_KEYS=0
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
-# zprof
 
 ### The lines in this section are added automatically by salt. Do not modify. ###
 #Default shell configs
 ######
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+zprof
