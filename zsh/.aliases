@@ -10,14 +10,28 @@ unalias l 2>/dev/null
 unalias ll 2>/dev/null
 unalias ls 2>/dev/null
 
-# alias ls="eza -F"
-alias ll="eza -F -l --git"
+alias ls="lsd -F"
+alias ll="ls -l"
 
-function ls() {
-    if [[ "${1:-}" == "-lart" ]]; then
-        shift
-        eza -F -la --sort newest $*
+# alias ls="eza -F"
+# alias ll="eza -F -l --git"
+
+# function ls() {
+#     if [[ "${1:-}" == "-lart" ]]; then
+#         shift
+#         eza -F -la --sort newest $*
+#     else
+#         eza -F $*
+#     fi
+# }
+
+function cdm() {
+    if [[ -z $1 ]]; then
+        echo "please provide a directory name, we will cd to it, making it if it does not exist"
+    elif [[ -d $1 ]]; then
+        cd $1
     else
-        eza -F $*
+        mkdir $1
+        cd $1
     fi
 }
