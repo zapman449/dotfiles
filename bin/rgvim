@@ -3,4 +3,3 @@
 set -euo pipefail
 
 rg --files-with-matches -0 "${1}" -g '!vendor/' | xargs -0 -o nvim
-

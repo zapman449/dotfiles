@@ -1,6 +1,15 @@
 #!/bin/bash
 
-echo "open this URL in Safari:"
-echo "https://calendly.com/rubinchiro/$(date '+%B' | tr '[A-Z]' '[a-z]')-calendly"
-echo "if you need next month:"
-echo "https://calendly.com/rubinchiro/$(date -d '+27 days' '+%B' | tr '[A-Z]' '[a-z]')-calendly"
+if [[ ${1:-} == "year" ]]; then
+
+    for month in january february march april may june july august september october november december; do
+        echo "* $month - https://calendly.com/rubinchiro/${month}-calendly"
+    done
+
+else
+
+    echo "open this URL in Safari:"
+    echo "https://calendly.com/rubinchiro/$(date '+%B' | tr '[A-Z]' '[a-z]')-calendly"
+    echo "if you need next month:"
+    echo "https://calendly.com/rubinchiro/$(date -d '+27 days' '+%B' | tr '[A-Z]' '[a-z]')-calendly"
+fi
