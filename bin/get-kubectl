@@ -10,7 +10,7 @@ if [[ -z ${kubectl_version} ]]; then
     echo "Example: $0 v1.23.3"
 fi
 
-if [[ ${kubectl_version} == "v*" ]]; then
+if [[ ${kubectl_version} =~ ^v ]]; then
     echo >/dev/null # noop
 else
     kubectl_version="v${kubectl_version}"
