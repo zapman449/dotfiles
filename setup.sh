@@ -38,5 +38,4 @@ if [[ "${UNAME}" == "Darwin" ]]; then
     stow_ghostty_dir="${HOME}/Library/Application Support/com.mitchellh.ghostty"
     [[ ! -d "${stow_ghostty_dir}" ]] && mkdir -p "${stow_ghostty_dir}"
     stow ghostty --target="${stow_ghostty_dir}"
-    echo stow ghostty --target="${stow_ghostty_dir}"
 fi
