@@ -38,26 +38,58 @@ vim.g.mapleader = ';'
 -- vim.g.maplocalleader = ','
 vim.g.maplocalleader = ';'
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.add({
+    { src = "https://github.com/folke/tokyonight.nvim", },
+    { src = "https://github.com/nvim-lua/plenary.nvim", },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'main' },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", },
+    { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = "https://github.com/ibhagwan/fzf-lua", },
+    { src = "https://github.com/karb94/neoscroll.nvim", },
+    { src = "https://github.com/ruifm/gitlinker.nvim", },
+    { src = "https://github.com/tpope/vim-fugitive", },
+})
 
-require("lazy").setup(
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  }
-)
+vim.cmd[[colorscheme tokyonight]]
 
-vim.cmd[[colorscheme tokyonight-night]]
+local ts_parsers = {
+  "bash",
+  "dockerfile",
+  "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
+  "go", "gomod", "gosum",
+  "json", "toml", "yaml",
+  "lua",
+  "make",
+  "markdown",
+  "python",
+  "vim",
+}
+
+local nts = require("nvim-treesitter")
+nts.install(ts_parsers)
+vim.api.nvim_create_autocmd('PackChanged', { 
+    callback = function()
+        nts.update()
+    end
+})
+
+require("treesitter-context").setup({
+  max_lines = 3,
+  multiline_threshold = 1,
+  separator = '-',
+  min_window_height = 20,
+  line_numbers = true,
+})
+require("neoscroll").setup({ duration_multiplier = 0.4 })
+require("gitlinker").setup({})
+
+vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
+  callback = function(args)
+    local filetype = args.match
+    local lang = vim.treesitter.language.get_lang(filetype)
+    if vim.treesitter.language.add(lang) then
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.treesitter.start()
+    end
+  end
+})

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+
+name="nvim-macos-x86_64"
+if [[ $(uname -m) != "x86_64" ]]; then
+    name="nvim-macos-arm64"
+fi
+
+pushd ~/Development/nvim-nightly >/dev/null
+    rm "${name}.tar.gz" || true
+    rm -rf "${name}.previous" || true
+    [[ -d "${name}" ]] && mv "${name}" "${name}.previous"
+    curl -LO "https://github.com/neovim/neovim/releases/download/nightly/${name}.tar.gz"
+    tar -xzf "${name}.tar.gz"
+popd >/dev/null
+
