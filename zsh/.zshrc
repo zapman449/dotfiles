@@ -1,5 +1,5 @@
 # enable profiling (NOTE: also requires `zprof` to be called at the bottom
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 #######################################################
 # load Square specific zshrc; please don't change this bit.
@@ -186,4 +186,4 @@ export COREPACK_INTEGRITY_KEYS=0
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-zprof
+# zprof
