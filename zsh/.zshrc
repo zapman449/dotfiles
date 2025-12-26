@@ -111,14 +111,14 @@ if [[ -f /opt/homebrew/share/zsh/site-functions/aws_zsh_completer.sh ]]; then
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jprice/Development/google-cloud-sdk/path.zsh.inc' ]; then
-    source '/Users/jprice/Development/google-cloud-sdk/path.zsh.inc'
-fi
+#if [ -f '/Users/jprice/Development/google-cloud-sdk/path.zsh.inc' ]; then
+#    source '/Users/jprice/Development/google-cloud-sdk/path.zsh.inc'
+#fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc' ]; then
-    source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
-fi
+#if [ -f '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc' ]; then
+#    source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
+#fi
 
 # use gnu CLI tools under their "natural" names
 # Brew puts them in interesting places... this efficiently puts the right version early in $PATH

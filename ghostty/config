@@ -14,7 +14,7 @@ macos-non-native-fullscreen = true
 mouse-hide-while-typing = true
 
 # scrollback-limit in bytes, roughly 125,000 lines
-scrollback-limit = 10000000
+scrollback-limit = 100000000
 
 shell-integration = zsh
 shell-integration-features = no-cursor
@@ -41,3 +41,4 @@ window-save-state = never
 
 # window-colorspace = srgb
 window-colorspace = display-p3
+keybind = shift+enter=text:\n

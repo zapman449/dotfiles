@@ -6,4 +6,8 @@
 --glob
 !vendor/*
 
+# don't search incident folder
+--glob
+!incident/*
+
 # --smart-case
