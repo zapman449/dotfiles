@@ -96,9 +96,13 @@ bindkey "^[^[[C" forward-word		# option-right-arrow goes forward word (I think t
 bindkey "^[^[[D" backward-word		# option-left-arrow goes backwards word (I think this is alt on a PC keyboard)
 bindkey '^z' push-line-or-edit
 
-# bring in kubectl completions
+# bring in kubectl completions - lazy, first invocation pays the penalty
 if [[ $commands[kubectl] ]]; then
-    source <(kubectl completion zsh)
+    kubectl() {
+        unfunction kubectl
+        source <(command kubectl completion zsh)
+        kubectl "$@"
+    }
 fi
 
 # if completion for aws in zsh is installed, setup aws for lazy loading of completion config
@@ -120,31 +124,15 @@ fi
 #    source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
 #fi
 
-# use gnu CLI tools under their "natural" names
-# Brew puts them in interesting places... this efficiently puts the right version early in $PATH
-for gnu_dir in \
-            ${BREW_PREFIX}/Cellar/gnu-sed/ \
-            ${BREW_PREFIX}/Cellar/gnu-tar/ \
-            ${BREW_PREFIX}/Cellar/gawk/ \
-            ${BREW_PREFIX}/Cellar/findutils/ \
-            ${BREW_PREFIX}/Cellar/coreutils/ \
-            ; do
-    
-    if [[ ! -d ${gnu_dir} ]]; then
-        continue
-    fi
-    # explicitly call the bsd versions here to avoid confusion
-    version_dir=$(/usr/bin/find "${gnu_dir}" -maxdepth 2 -type d -name 'libexec' | /usr/bin/sort -n | /usr/bin/tail -1)
-    final_dir=${version_dir}/gnubin
-    # echo "version_dir is ${version_dir}"
-    # If the value is not found in the array, ${my_array[(ie)foo] will
-    # evaluate to the first index past the end of the array, so for a
-    # 3-element array it would return 4.
-    # https://unix.stackexchange.com/questions/411304/how-do-i-check-whether-a-zsh-array-contains-a-given-value/411307#411307
-    if [[ ${path[(ie)$final_dir]} -gt ${#my_array} ]]; then
-        PATH=${final_dir}:${PATH}
-    fi
-done
+# get various gnu utils early in $PATH (note in zsh $path and $PATH are tied together)
+path=(
+    ${BREW_PREFIX}/opt/coreutils/libexec/gnubin
+    ${BREW_PREFIX}/opt/findutils/libexec/gnubin
+    ${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin
+    ${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin
+    ${BREW_PREFIX}/opt/gawk/libexec/gnubin
+    $path
+)
 export PATH
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
