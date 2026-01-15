@@ -96,13 +96,9 @@ bindkey "^[^[[C" forward-word		# option-right-arrow goes forward word (I think t
 bindkey "^[^[[D" backward-word		# option-left-arrow goes backwards word (I think this is alt on a PC keyboard)
 bindkey '^z' push-line-or-edit
 
-# bring in kubectl completions - lazy, first invocation pays the penalty
+# bring in kubectl completions
 if [[ $commands[kubectl] ]]; then
-    kubectl() {
-        unfunction kubectl
-        source <(command kubectl completion zsh)
-        kubectl "$@"
-    }
+    source <(kubectl completion zsh)
 fi
 
 # if completion for aws in zsh is installed, setup aws for lazy loading of completion config
