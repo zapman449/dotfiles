@@ -11,7 +11,7 @@ pushd ~/Development/nvim-nightly >/dev/null
     rm "${name}.tar.gz" || true
     rm -rf "${name}.previous" || true
     [[ -d "${name}" ]] && mv "${name}" "${name}.previous"
-    curl -LO "https://github.com/neovim/neovim/releases/download/nightly/${name}.tar.gz"
+    curl -sLO "https://github.com/neovim/neovim/releases/download/nightly/${name}.tar.gz"
     tar -xzf "${name}.tar.gz"
 popd >/dev/null
 
