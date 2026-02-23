@@ -27,7 +27,7 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 -- vim.opt.signcolumn = "yes"    -- adds two spaces left of 0 line
-vim.opt.isfname:append("@-@")
+-- vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
@@ -40,14 +40,14 @@ vim.g.maplocalleader = ';'
 
 vim.pack.add({
     { src = "https://github.com/folke/tokyonight.nvim", },
-    { src = "https://github.com/nvim-lua/plenary.nvim", },
+    -- { src = "https://github.com/nvim-lua/plenary.nvim", },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'main' },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = "https://github.com/ibhagwan/fzf-lua", },
     { src = "https://github.com/karb94/neoscroll.nvim", },
-    { src = "https://github.com/ruifm/gitlinker.nvim", },
-    { src = "https://github.com/tpope/vim-fugitive", },
+    -- { src = "https://github.com/ruifm/gitlinker.nvim", },
+    -- { src = "https://github.com/tpope/vim-fugitive", },
 })
 
 vim.cmd[[colorscheme tokyonight]]
@@ -62,7 +62,7 @@ local ts_parsers = {
   "make",
   "markdown",
   "python",
-  "vim",
+  "vim", "vimdoc",
 }
 
 local nts = require("nvim-treesitter")
@@ -81,7 +81,7 @@ require("treesitter-context").setup({
   line_numbers = true,
 })
 require("neoscroll").setup({ duration_multiplier = 0.4 })
-require("gitlinker").setup({})
+-- require("gitlinker").setup({})
 
 vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
   callback = function(args)
@@ -93,3 +93,20 @@ vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and 
     end
   end
 })
+
+vim.lsp.enable('bashls')
+
+vim.lsp.config('yamlls', {
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
+        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+        ["/path/from/root/of/project"] = "/.github/workflows/*",
+      },
+    },
+  }
+})
+
+require("fzf-lua").setup()
