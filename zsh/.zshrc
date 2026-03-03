@@ -8,13 +8,6 @@ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   unfunction ghostty-integration
 fi
 
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
-
-cdpath=(. ~ ~/Development)
-# shamelessly stolen from https://unix.stackexchange.com/questions/175108/when-using-zsh-tab-completion-ignore-cdpath-if-a-local-file-or-directory-matche/175203#175203
-zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
-
 ##############################################################################
 # History Configuration
 ##############################################################################
@@ -39,8 +32,9 @@ setopt auto_pushd              # cd now pushes previous dir onto dirstack
 setopt pushd_silent            # don't print the dirstack on each cd
 setopt pushd_to_home           # naked pushd (or cd with autopushd) takes you home
 
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
+cdpath=(. ~ ~/Development)
+# shamelessly stolen from https://unix.stackexchange.com/questions/175108/when-using-zsh-tab-completion-ignore-cdpath-if-a-local-file-or-directory-matche/175203#175203
+zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
 
 # Load version control information
 autoload -Uz vcs_info
@@ -92,39 +86,30 @@ fi
 #    source '/Users/jprice/Development/google-cloud-sdk/completion.zsh.inc'
 #fi
 
-# get various gnu utils early in $PATH (note in zsh $path and $PATH are tied together)
-path=(
-    ${BREW_PREFIX}/opt/coreutils/libexec/gnubin
-    ${BREW_PREFIX}/opt/findutils/libexec/gnubin
-    ${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin
-    ${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin
-    ${BREW_PREFIX}/opt/gawk/libexec/gnubin
-    $path
-)
-export PATH
-
 function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
 
-export KUBE_EDITOR=/opt/homebrew/bin/nvim
+export KUBE_EDITOR=~/bin/vim
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
 
 # use fzf for history searching
-if [[ -f ~/.fzf.zsh ]] ; then
-    source ~/.fzf.zsh
-fi
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 if [[ -f ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-if [[ -f "${HOME}/.cargo/env" ]]; then
-    source "$HOME/.cargo/env"
-fi
+[[ -f "${HOME}/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 if [[ -f "${HOME}/.ripgreprc" ]]; then
     export RIPGREP_CONFIG_PATH=~/.ripgreprc
 fi
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
