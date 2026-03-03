@@ -1,37 +1,12 @@
 # enable profiling (NOTE: also requires `zprof` to be called at the bottom
 # zmodload zsh/zprof
 
-#######################################################
-# load Square specific zshrc; please don't change this bit.
-#######################################################
-DISABLE_AUTO_NVM_USE=true
-if [[ -f ~/Development/config_files/square/zshrc ]]; then
-    source ~/Development/config_files/square/zshrc
-fi
-#######################################################
-
-# uncomment to automatically `bundle exec` common ruby commands
-# if [[ -f "$SQUARE_HOME/config_files/square/bundler-exec.sh"]]; then
-#   source $SQUARE_HOME/config_files/square/bundler-exec.sh
-# fi
-
-# load the aliases in config_files files (optional)
-if [[ -f ~/Development/config_files/square/aliases ]]; then
-    source ~/Development/config_files/square/aliases
-fi
-
-###########################################
-# Feel free to make your own changes below.
-###########################################
-
 # ghostty integration
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
   ghostty-integration
   unfunction ghostty-integration
 fi
-
-BREW_PREFIX=$(brew --prefix)
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
@@ -49,7 +24,6 @@ HISTFILE=~/.zsh_history        # Where to save history to disk
 HISTSIZE=1000000               # How many lines of history to keep in memory
 SAVEHIST=1000000               # Number of history entries to save to disk
 DIRSTACKSIZE=8                 # Depth of directory stack
-# HISTDUP=erase                  # Erase duplicates in the history file
 setopt append_history          # Append history to the history file (no overwriting)
 setopt complete_aliases        # tab complete commands even behind aliases
 setopt extended_history        # Write the history file in the ":start:elapsed;command" format.
@@ -67,8 +41,6 @@ setopt pushd_to_home           # naked pushd (or cd with autopushd) takes you ho
 
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 [[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 
 # Load version control information
 autoload -Uz vcs_info
@@ -131,9 +103,6 @@ path=(
 )
 export PATH
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
@@ -157,17 +126,5 @@ if [[ -f "${HOME}/.ripgreprc" ]]; then
     export RIPGREP_CONFIG_PATH=~/.ripgreprc
 fi
 
-export NODE_EXTRA_CA_CERTS=/opt/homebrew/etc/ca-certificates/cert.pem
-export COREPACK_NPM_REGISTRY=https://artifactory.global.square/artifactory/api/npm/square-npm/
-export COREPACK_INTEGRITY_KEYS=0
-
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
-
-### The lines in this section are added automatically by salt. Do not modify. ###
-#Default shell configs
-######
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # zprof

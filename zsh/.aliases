@@ -14,17 +14,9 @@ unalias ls 2>/dev/null
 alias ls="lsd -F"
 alias ll="ls -l"
 
+# deprecated exa as unmaintained, deprecated eza in favor of lsd
 # alias ls="eza -F"
 # alias ll="eza -F -l --git"
-
-# function ls() {
-#     if [[ "${1:-}" == "-lart" ]]; then
-#         shift
-#         eza -F -la --sort newest $*
-#     else
-#         eza -F $*
-#     fi
-# }
 
 function cdm() {
     if [[ -z $1 ]]; then
