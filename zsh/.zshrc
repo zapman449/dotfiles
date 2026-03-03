@@ -8,6 +8,37 @@ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   unfunction ghostty-integration
 fi
 
+# cache the given path (see /etc/zprofile call to /usr/libexec/path_helper)
+provided_path=$path
+
+# normally we shouldn't clear $PATH and restart, but this lets us take full
+# control, and have the system provided stuff at the end.
+# Also normally, we'd set $PATH in .zshenv, but the path_helper stuff up-ends that
+path=( ~/bin ~/.local/bin )
+path+=( /opt/homebrew/bin /opt/homebrew/sbin )
+
+# brief digression into brew config stuff
+BREW_PREFIX=$(brew --prefix)
+eval "$(${BREW_PREFIX}/bin/brew shellenv)"
+
+# get various gnu utils early in $PATH
+path+=( 
+    ${BREW_PREFIX}/opt/coreutils/libexec/gnubin \
+    ${BREW_PREFIX}/opt/findutils/libexec/gnubin \
+    ${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin \
+    ${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin \
+    ${BREW_PREFIX}/opt/gawk/libexec/gnubin \
+)
+
+path+=( /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin )
+path+=( /System/Cryptexes/App/usr/bin ) # MacOS security tooling, probably not particularly useful?
+# re-add the system provided stuff at the end
+path+=$provided_path
+
+# force uniqueness on all entries in path/PATH
+typeset -U PATH path
+export PATH
+
 ##############################################################################
 # History Configuration
 ##############################################################################
