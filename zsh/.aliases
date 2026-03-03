@@ -1,9 +1,3 @@
-alias up="cd ~/Development/go/src/square/up/"
-alias ccl="cd ~/Development/cloud-cd-lambdas/"
-alias ccs="cd ~/Development/cloud-cd-shared/"
-alias cclu="cd ~/Development/cloud-cd-lambdas/utilities/"
-alias ccdu="cd ~/Development/ccd-users/all/"
-
 alias baty="bat -l yaml"
 alias batj="bat -l json"
 
@@ -14,10 +8,7 @@ unalias ls 2>/dev/null
 alias ls="lsd -F"
 alias ll="ls -l"
 
-# deprecated exa as unmaintained, deprecated eza in favor of lsd
-# alias ls="eza -F"
-# alias ll="eza -F -l --git"
-
+# cd into a directory. if it doesn't exist, make it, then cd into it.
 function cdm() {
     if [[ -z $1 ]]; then
         echo "please provide a directory name, we will cd to it, making it if it does not exist"

@@ -8,7 +8,7 @@ dotfiles, refactored to use `stow`
 Other brew formulas:
 
 ```
-brew install awscli bat ca-certificates coreutils eza fd findutils fzf gawk gnu-sed gnu-tar \
+brew install awscli bat ca-certificates coreutils fd findutils fzf gawk gnu-sed gnu-tar \
              jq lsd neovim readline ripgrep shellcheck starship stow tmux tree-sitter watch \
              wezterm yq zsh zsh-syntax-highlighting
 ```
