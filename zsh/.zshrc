@@ -121,6 +121,7 @@ function manpdf() {
     man -t "${1}" | open -f -a Preview
 }
 
+# ~/bin/vim is a symlink to "correct vim".  Currently it's neovim 0.12 nightly
 export KUBE_EDITOR=~/bin/vim
 
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -139,8 +140,11 @@ if [[ -f "${HOME}/.ripgreprc" ]]; then
     export RIPGREP_CONFIG_PATH=~/.ripgreprc
 fi
 
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
+# use starship prompt if it is installed
+if [[ $commands[starship] && -f ~/.config/starship/starship.toml ]]; then
+    export STARSHIP_CONFIG=~/.config/starship/starship.toml
+    eval "$(starship init zsh)"
+fi
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
