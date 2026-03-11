@@ -36,7 +36,7 @@ vim.opt.colorcolumn = "120"
 -- vim.g.mapleader = ','
 vim.g.mapleader = ';'
 -- vim.g.maplocalleader = ','
-vim.g.maplocalleader = ';'
+-- vim.g.maplocalleader = ';'
 
 vim.pack.add({
     { src = "https://github.com/folke/tokyonight.nvim", },
@@ -95,6 +95,7 @@ vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and 
 })
 
 vim.lsp.enable('bashls')
+vim.lsp.enable('gopls')
 
 vim.lsp.config('yamlls', {
   settings = {
@@ -110,3 +111,8 @@ vim.lsp.config('yamlls', {
 })
 
 require("fzf-lua").setup()
+vim.keymap.set("n", "<leader>gd", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
+-- leader-ff find by files
+vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {noremap = true, silent = true})
+-- leader-fg find by string (aka grep aka live_grep)
+vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {noremap = true, silent = true})

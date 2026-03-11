@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 
 local config = {
   color_scheme = 'tokyonight_night',
-  -- font = wezterm.font('JetBrains Mono'),
-  font = wezterm.font('Square Sans Mono'),
+  font = wezterm.font('JetBrains Mono'),
+  -- font = wezterm.font('Square Sans Mono'),
   pane_focus_follows_mouse = true,
   scrollback_lines = 100000,
   -- integrate the tabs into the window title bar

@@ -30,6 +30,8 @@ path+=(
     ${BREW_PREFIX}/opt/gawk/libexec/gnubin \
 )
 
+path+=( ~/go/bin )
+
 path+=( /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin )
 path+=( /System/Cryptexes/App/usr/bin ) # MacOS security tooling, probably not particularly useful?
 # re-add the system provided stuff at the end

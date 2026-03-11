@@ -4,7 +4,9 @@ theme = tokyonight
 window-theme = system
 macos-titlebar-style = tabs
 unfocused-split-opacity = 0.6
-font-family = Square Sans Mono
+# font-family = Square Sans Mono
+# font-family = Menlo Regular
+font-family = Inconsolata Regular Regular
 
 copy-on-select = clipboard
 focus-follows-mouse = true
