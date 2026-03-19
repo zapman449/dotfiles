@@ -96,6 +96,7 @@ vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and 
 
 vim.lsp.enable('bashls')
 vim.lsp.enable('gopls')
+vim.lsp.enable('pyright')
 
 vim.lsp.config('yamlls', {
   settings = {
@@ -116,3 +117,5 @@ vim.keymap.set("n", "<leader>gd", "<cmd>tab split | lua vim.lsp.buf.definition()
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {noremap = true, silent = true})
 -- leader-fg find by string (aka grep aka live_grep)
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {noremap = true, silent = true})
+-- leader-tt to open lsp error message on current word
+vim.keymap.set("n", "<leader>tt", "lua vim.diagnostic.open_float()", {noremap = true, silent = true})
