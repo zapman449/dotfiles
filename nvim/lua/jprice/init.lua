@@ -62,6 +62,7 @@ local ts_parsers = {
   "make",
   "markdown",
   "python",
+  "terraform",
   "vim", "vimdoc",
 }
 
@@ -97,6 +98,7 @@ vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and 
 vim.lsp.enable('bashls')
 vim.lsp.enable('gopls')
 vim.lsp.enable('pyright')
+vim.lsp.enable('terraform-ls')
 
 vim.lsp.config('yamlls', {
   settings = {
