@@ -39,7 +39,8 @@ vim.g.mapleader = ';'
 -- vim.g.maplocalleader = ';'
 
 vim.pack.add({
-    { src = "https://github.com/folke/tokyonight.nvim", },
+    -- { src = "https://github.com/folke/tokyonight.nvim", },
+    { src = "https://github.com/cemkagank/apple.nvim", },
     -- { src = "https://github.com/nvim-lua/plenary.nvim", },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'main' },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", },
@@ -48,9 +49,11 @@ vim.pack.add({
     { src = "https://github.com/karb94/neoscroll.nvim", },
     -- { src = "https://github.com/ruifm/gitlinker.nvim", },
     -- { src = "https://github.com/tpope/vim-fugitive", },
+    { src = "https://github.com/rmagatti/gx-extended.nvim", },
 })
 
-vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme apple]]
 
 local ts_parsers = {
   "bash",
@@ -73,6 +76,11 @@ vim.api.nvim_create_autocmd('PackChanged', {
         nts.update()
     end
 })
+
+require('gx-extended').setup{
+  enable_github_file_line = true,
+  open_fn = function(url) vim.ui.open(url) end,
+}
 
 require("treesitter-context").setup({
   max_lines = 3,
@@ -121,3 +129,13 @@ vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {noremap = true, sile
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {noremap = true, silent = true})
 -- leader-tt to open lsp error message on current word
 vim.keymap.set("n", "<leader>tt", "lua vim.diagnostic.open_float()", {noremap = true, silent = true})
+-- leader-sh to show LSP documentation for function
+-- vim.keymap.set("n", "<leader>sh", "vim.lsp.buf.hover", {buffer = true})
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = true })
+
+-- leader-ss to show LSP documentation for function
+vim.keymap.set("n", "<leader>ss", "vim.lsp.buf.signature_help", {buffer = true})
+
+-- toggle comment of current line or visual mode selection with cmd-/
+vim.keymap.set("v", "<D-/>", "gc", { remap = true, silent = true, desc = "Toggle comment (visual mode)" })
+vim.keymap.set("n", "<D-/>", "gcc", { remap = true, silent = true, desc = "Toggle comment (normal mode)" })

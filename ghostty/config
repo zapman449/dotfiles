@@ -1,12 +1,14 @@
 ### Visual configuration
 # theme = Tomorrow Night Bright
-theme = tokyonight
+# theme = tokyonight
+theme = Apple System Colors
 window-theme = system
 macos-titlebar-style = tabs
 unfocused-split-opacity = 0.6
 # font-family = Square Sans Mono
 # font-family = Menlo Regular
-font-family = Inconsolata Regular Regular
+# font-family = Inconsolata Regular Regular
+font-family = JetBrains Mono
 
 copy-on-select = clipboard
 focus-follows-mouse = true
