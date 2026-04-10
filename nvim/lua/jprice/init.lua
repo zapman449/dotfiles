@@ -26,8 +26,6 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
--- vim.opt.signcolumn = "yes"    -- adds two spaces left of 0 line
--- vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
@@ -41,18 +39,17 @@ vim.g.mapleader = ';'
 vim.pack.add({
     -- { src = "https://github.com/folke/tokyonight.nvim", },
     { src = "https://github.com/cemkagank/apple.nvim", },
-    -- { src = "https://github.com/nvim-lua/plenary.nvim", },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'main' },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = "https://github.com/ibhagwan/fzf-lua", },
     { src = "https://github.com/karb94/neoscroll.nvim", },
-    -- { src = "https://github.com/ruifm/gitlinker.nvim", },
     -- { src = "https://github.com/tpope/vim-fugitive", },
     { src = "https://github.com/rmagatti/gx-extended.nvim", },
 })
 
 -- vim.cmd[[colorscheme tokyonight]]
+require("apple.util").is_dark = function() return true end
 vim.cmd[[colorscheme apple]]
 
 local ts_parsers = {
@@ -90,7 +87,6 @@ require("treesitter-context").setup({
   line_numbers = true,
 })
 require("neoscroll").setup({ duration_multiplier = 0.4 })
--- require("gitlinker").setup({})
 
 vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
   callback = function(args)
@@ -122,11 +118,13 @@ vim.lsp.config('yamlls', {
 })
 
 require("fzf-lua").setup()
-vim.keymap.set("n", "<leader>gd", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
+--vim.keymap.set("n", "<leader>gd", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>gd", "lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
 -- leader-ff find by files
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {noremap = true, silent = true})
 -- leader-fg find by string (aka grep aka live_grep)
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {noremap = true, silent = true})
+
 -- leader-tt to open lsp error message on current word
 vim.keymap.set("n", "<leader>tt", "lua vim.diagnostic.open_float()", {noremap = true, silent = true})
 -- leader-sh to show LSP documentation for function
@@ -137,5 +135,5 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = true })
 vim.keymap.set("n", "<leader>ss", "vim.lsp.buf.signature_help", {buffer = true})
 
 -- toggle comment of current line or visual mode selection with cmd-/
-vim.keymap.set("v", "<D-/>", "gc", { remap = true, silent = true, desc = "Toggle comment (visual mode)" })
+vim.keymap.set("v", "<D-/>", "gc",  { remap = true, silent = true, desc = "Toggle comment (visual mode)" })
 vim.keymap.set("n", "<D-/>", "gcc", { remap = true, silent = true, desc = "Toggle comment (normal mode)" })
