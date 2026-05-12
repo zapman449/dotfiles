@@ -39,12 +39,10 @@ vim.g.mapleader = ';'
 vim.pack.add({
     -- { src = "https://github.com/folke/tokyonight.nvim", },
     { src = "https://github.com/cemkagank/apple.nvim", },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'main' },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", },
+    { src = 'https://github.com/romus204/tree-sitter-manager.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = "https://github.com/ibhagwan/fzf-lua", },
     { src = "https://github.com/karb94/neoscroll.nvim", },
-    -- { src = "https://github.com/tpope/vim-fugitive", },
     { src = "https://github.com/rmagatti/gx-extended.nvim", },
 })
 
@@ -52,26 +50,20 @@ vim.pack.add({
 require("apple.util").is_dark = function() return true end
 vim.cmd[[colorscheme apple]]
 
-local ts_parsers = {
-  "bash",
-  "dockerfile",
-  "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
-  "go", "gomod", "gosum",
-  "json", "toml", "yaml",
-  "lua",
-  "make",
-  "markdown",
-  "python",
-  "terraform",
-  "vim", "vimdoc",
-}
-
-local nts = require("nvim-treesitter")
-nts.install(ts_parsers)
-vim.api.nvim_create_autocmd('PackChanged', { 
-    callback = function()
-        nts.update()
-    end
+require("tree-sitter-manager").setup({
+    ensure_installed = {
+        "bash",
+        "dockerfile",
+        "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
+        "go", "gomod", "gosum",
+        "json", "toml", "yaml",
+        "lua",
+        "make",
+        "markdown",
+        "python",
+        "terraform",
+        "vim", "vimdoc",
+    }
 })
 
 require('gx-extended').setup{
@@ -79,13 +71,13 @@ require('gx-extended').setup{
   open_fn = function(url) vim.ui.open(url) end,
 }
 
-require("treesitter-context").setup({
-  max_lines = 3,
-  multiline_threshold = 1,
-  separator = '-',
-  min_window_height = 20,
-  line_numbers = true,
-})
+-- require("treesitter-context").setup({
+--   max_lines = 3,
+--   multiline_threshold = 1,
+--   separator = '-',
+--   min_window_height = 20,
+--   line_numbers = true,
+-- })
 require("neoscroll").setup({ duration_multiplier = 0.4 })
 
 vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
