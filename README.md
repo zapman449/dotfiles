@@ -25,6 +25,11 @@ On the off-chance you need to undo this, run the following (will still need logo
 
 `defaults write -g ApplePressAndHoldEnabled -bool true`
 
+### git config
+
+Run:
+* `git config --global alias.unadd 'restore --staged'` - adds alias for "git unadd"
+
 ### Turn off "rearrange spaces"
 
 * System Preferences:
