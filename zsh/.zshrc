@@ -18,10 +18,19 @@ provided_path=( $path )
 # control, and have the system provided stuff at the end.
 # Also normally, we'd set $PATH in .zshenv, but the path_helper stuff up-ends that
 path=( ~/bin ~/.local/bin )
-path+=( /opt/homebrew/bin /opt/homebrew/sbin )
+
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    path+=( /opt/homebrew/bin /opt/homebrew/sbin )
+elif [[ -f /usr/local/bin/brew ]]; then
+    path+=( /usr/local/bin /usr/local/sbin )
+fi
 
 # brief digression into brew config stuff
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if (( $+commands[brew] )); then
+   eval "$(brew shellenv)"
+else
+    echo "WARNING: brew not found in PATH, this will cause problems"
+fi
 
 # get various gnu utils early in $PATH
 path+=( 
@@ -130,6 +139,10 @@ fi
 if (( $+commands[starship] )) && [[ -f ~/.config/starship/starship.toml ]]; then
     export STARSHIP_CONFIG=~/.config/starship/starship.toml
     eval "$(starship init zsh)"
+fi
+
+if [[ -f ~/.zshrc ]] && [[ ! -L ~/.zshrc ]]; then
+    echo "WARNING: ~/.zshrc is no longer a symlink"
 fi
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
