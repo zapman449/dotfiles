@@ -62,6 +62,17 @@ require("tree-sitter-manager").setup({
     }
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    desc = 'enable spellcheck for markdown files',
+    pattern = 'markdown', -- or { 'markdown', 'text' }
+    group = spell_group,
+    callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = 'en_us'
+        vim.opt_local.wrap = true
+    end,
+})
+
 require('gx-extended').setup{
   enable_github_file_line = true,
   open_fn = function(url) vim.ui.open(url) end,
