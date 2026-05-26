@@ -17,7 +17,6 @@ vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
@@ -33,11 +32,8 @@ vim.opt.colorcolumn = "120"
 
 -- vim.g.mapleader = ','
 vim.g.mapleader = ';'
--- vim.g.maplocalleader = ','
--- vim.g.maplocalleader = ';'
 
 vim.pack.add({
-    -- { src = "https://github.com/folke/tokyonight.nvim", },
     { src = "https://github.com/cemkagank/apple.nvim", },
     { src = 'https://github.com/romus204/tree-sitter-manager.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -46,7 +42,7 @@ vim.pack.add({
     { src = "https://github.com/rmagatti/gx-extended.nvim", },
 })
 
--- vim.cmd[[colorscheme tokyonight]]
+-- monkeypatch the is_dark to not follow defaults, since I use variable mode
 require("apple.util").is_dark = function() return true end
 vim.cmd[[colorscheme apple]]
 
@@ -71,21 +67,13 @@ require('gx-extended').setup{
   open_fn = function(url) vim.ui.open(url) end,
 }
 
--- require("treesitter-context").setup({
---   max_lines = 3,
---   multiline_threshold = 1,
---   separator = '-',
---   min_window_height = 20,
---   line_numbers = true,
--- })
 require("neoscroll").setup({ duration_multiplier = 0.4 })
 
 vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
   callback = function(args)
     local filetype = args.match
     local lang = vim.treesitter.language.get_lang(filetype)
-    if vim.treesitter.language.add(lang) then
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    if lang and vim.treesitter.language.add(lang) then
       vim.treesitter.start()
     end
   end
@@ -94,7 +82,8 @@ vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and 
 vim.lsp.enable('bashls')
 vim.lsp.enable('gopls')
 vim.lsp.enable('pyright')
-vim.lsp.enable('terraform-ls')
+vim.lsp.enable('terraformls')
+vim.lsp.enable('yamlls')
 
 vim.lsp.config('yamlls', {
   settings = {
@@ -102,8 +91,6 @@ vim.lsp.config('yamlls', {
       schemas = {
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
         ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
-        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-        ["/path/from/root/of/project"] = "/.github/workflows/*",
       },
     },
   }
@@ -111,21 +98,24 @@ vim.lsp.config('yamlls', {
 
 require("fzf-lua").setup()
 --vim.keymap.set("n", "<leader>gd", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
-vim.keymap.set("n", "<leader>gd", "lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {noremap = true, silent = true})
 -- leader-ff find by files
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {noremap = true, silent = true})
 -- leader-fg find by string (aka grep aka live_grep)
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {noremap = true, silent = true})
 
 -- leader-tt to open lsp error message on current word
-vim.keymap.set("n", "<leader>tt", "lua vim.diagnostic.open_float()", {noremap = true, silent = true})
--- leader-sh to show LSP documentation for function
--- vim.keymap.set("n", "<leader>sh", "vim.lsp.buf.hover", {buffer = true})
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = true })
+vim.keymap.set("n", "<leader>tt", vim.diagnostic.open_float, {noremap = true, silent = true})
 
--- leader-ss to show LSP documentation for function
-vim.keymap.set("n", "<leader>ss", "vim.lsp.buf.signature_help", {buffer = true})
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    -- leader-ss to show LSP documentation for function
+    vim.keymap.set('n', '<leader>ss', vim.lsp.buf.signature_help, { buffer = args.buf })
+    -- K is the default in 0.10+ on LspAttach, so you can drop the explicit one
+  end,
+})
 
 -- toggle comment of current line or visual mode selection with cmd-/
+-- NOTE: these require kitty keyboard protocol (kitty/ghostty/etc)
 vim.keymap.set("v", "<D-/>", "gc",  { remap = true, silent = true, desc = "Toggle comment (visual mode)" })
 vim.keymap.set("n", "<D-/>", "gcc", { remap = true, silent = true, desc = "Toggle comment (normal mode)" })
