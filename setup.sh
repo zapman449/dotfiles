@@ -22,6 +22,10 @@ stow tmux
 stow wezterm
 stow zsh
 
+if [[ -L ~/.fzf.zsh ]]; then
+    rm ~/.fzf.zsh
+fi
+
 echo "---> installing tools (phase 2)"
 # need to set target dir for nvim so it doesn't take over the whole ~/.config hierarchy
 [[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
