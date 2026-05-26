@@ -1,13 +1,8 @@
 ### Visual configuration
-# theme = Tomorrow Night Bright
-# theme = tokyonight
 theme = Apple System Colors
 window-theme = system
 macos-titlebar-style = tabs
 unfocused-split-opacity = 0.6
-# font-family = Square Sans Mono
-# font-family = Menlo Regular
-# font-family = Inconsolata Regular Regular
 font-family = JetBrains Mono
 
 copy-on-select = clipboard
@@ -18,7 +13,7 @@ macos-non-native-fullscreen = true
 mouse-hide-while-typing = true
 
 # scrollback-limit in bytes, roughly 125,000 lines
-scrollback-limit = 100000000
+scrollback-limit = 10000000
 
 shell-integration = zsh
 shell-integration-features = no-cursor
