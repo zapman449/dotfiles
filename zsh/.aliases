@@ -5,11 +5,13 @@ unalias l 2>/dev/null
 unalias ll 2>/dev/null
 unalias ls 2>/dev/null
 
-alias ls="lsd -F"
+if (( $+commands[lsd] )); then
+    alias ls="lsd -F"
+fi
 alias ll="ls -l"
 
 # cd into a directory. if it doesn't exist, make it, then cd into it.
-function cdm() {
+function cdm {
     if [[ -z $1 ]]; then
         echo "please provide a directory name, we will cd to it, making it if it does not exist"
     elif [[ -d $1 ]]; then
