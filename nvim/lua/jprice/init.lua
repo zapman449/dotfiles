@@ -1,4 +1,0 @@
--- require("jprice.options")
--- require("jprice.packages")
--- require("jprice.lsp")
--- require("jprice.keybinds")
