@@ -30,8 +30,6 @@ keybind = super+right=goto_split:next
 # cmd+s sends :w<enter> - so cmd-s works in vim in terminal
 keybind = super+s=text:\x1b:w\n
 
-# TODO: search scrollback hack
-
 ### Misc settings
 desktop-notifications = false
 quit-after-last-window-closed = true
