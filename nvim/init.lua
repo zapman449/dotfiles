@@ -40,12 +40,18 @@ vim.g.mapleader = ';'
 -- packages
 
 vim.pack.add({
-    { src = "https://github.com/cemkagank/apple.nvim", },
-    { src = 'https://github.com/romus204/tree-sitter-manager.nvim' },
-    { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = "https://github.com/ibhagwan/fzf-lua", },
-    { src = "https://github.com/karb94/neoscroll.nvim", },
-    { src = "https://github.com/rmagatti/gx-extended.nvim", },
+    { src = "https://github.com/cemkagank/apple.nvim",
+      version = "bb6a8dcc904da47601836207aa99278c2bdb6025" }, -- locked 2026-06-01
+    { src = 'https://github.com/romus204/tree-sitter-manager.nvim',
+      version = "bb66b815aff01e87b2e26be995116be8d2f91474" }, -- locked 2026-06-01
+    { src = 'https://github.com/neovim/nvim-lspconfig',
+      version = "v2.9.0" },
+    { src = "https://github.com/ibhagwan/fzf-lua",
+      version = "d340ade20dfe4ef87e6f9a63b9905be91965b5dc" }, -- locked 2026-06-01
+    { src = "https://github.com/karb94/neoscroll.nvim",
+      version = "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8" }, -- locked 2026-06-01
+    { src = "https://github.com/rmagatti/gx-extended.nvim",
+      version = "68032ffb37c8e53316eba69b51655d854479fdc1" }, -- locked 2026-06-01
 })
 
 -- monkeypatch the is_dark to not follow defaults, since I use variable mode
@@ -67,6 +73,8 @@ require("tree-sitter-manager").setup({
         "vim", "vimdoc",
     }
 })
+
+local spell_group = vim.api.nvim_create_augroup("spellcheck", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
     desc = 'enable spellcheck for markdown files',
