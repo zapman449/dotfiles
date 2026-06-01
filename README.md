@@ -3,15 +3,11 @@ dotfiles
 
 dotfiles, refactored to use `stow`
 
-`brew install stow` to get started, presuming a mac (though most everything here should work the same on linux)
+## TL;DR:
 
-Other brew formulas:
+First run: run `brew bundle --file=~/dotfiles/Brewfile` to get brew packages setup, then run `./setup.sh`.
 
-```
-brew install awscli bat ca-certificates coreutils fd findutils fzf gawk gnu-sed gnu-tar \
-             jq lsd neovim readline ripgrep shellcheck starship stow tmux tree-sitter watch \
-             wezterm yq zsh zsh-syntax-highlighting
-```
+Subsequent runs: run `./setup.sh` as it'll keep the brew world up-to-date.  (separated in first run to aid in triage of setup issues
 
 ## Other commands:
 

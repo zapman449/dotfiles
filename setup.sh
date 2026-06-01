@@ -2,6 +2,31 @@
 
 set -euo pipefail
 
+# ensure the "stow dir" is correct
+cd "${HOME}/dotfiles"
+
+if command -v git >/dev/null ; then
+    # noop
+    echo >/dev/null
+else
+    echo "please install git"
+    exit 1
+fi
+
+echo "---> updating git repo"
+git pull
+
+if command -v brew >/dev/null ; then
+    # noop
+    echo >/dev/null
+else
+    echo "please install homebrew"
+    exit 1
+fi
+
+brew update
+brew bundle --file=~/dotfiles/Brewfile
+
 if command -v stow >/dev/null ; then
     # noop
     echo >/dev/null
@@ -9,12 +34,6 @@ else
     echo "please install stow, probably with brew"
     exit 1
 fi
-
-# ensure the "stow dir" is correct
-cd "${HOME}/dotfiles"
-
-echo "---> updating git repo"
-git pull
 
 echo "---> installing tools (phase 1)"
 stow ripgrep
