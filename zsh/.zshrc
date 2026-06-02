@@ -32,6 +32,13 @@ else
     echo "WARNING: brew not found in PATH, this will cause problems"
 fi
 
+#ugh, brew shellenv rewrites path, even though the needed bits are already in path...
+brew_path=( $path )
+
+# start again
+path=( ~/bin ~/.local/bin )
+path+=( $brew_path )
+
 # get various gnu utils early in $PATH
 path+=( 
     ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin \
@@ -46,7 +53,7 @@ path+=( ~/go/bin )
 
 # re-add the system provided stuff at the end
 path+=( $provided_path )
-unset provided_path
+unset provided_path brew_path
 
 ##############################################################################
 # History Configuration
