@@ -15,7 +15,7 @@ typeset -U path
 provided_path=( $path )
 
 # normally we shouldn't clear $PATH and restart, but this lets us take full
-# control, and have the system provided stuff at the end.
+# control, and have the system provided stuff at the end.  Note we'll repeat this trick post brew setup
 # Also normally, we'd set $PATH in .zshenv, but the path_helper stuff up-ends that
 path=( ~/bin ~/.local/bin )
 
