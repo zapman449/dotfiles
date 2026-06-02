@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-vim -d $*
+vim -d "$@"

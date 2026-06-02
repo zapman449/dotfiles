@@ -2,12 +2,20 @@
 
 set -euo pipefail
 
-if [[ -z ${1} ]] ; then
+function USAGE {
+    echo "rgvim <search regexp> [subdirectory] [subdir2...]"
+    exit 1
+}
+
+search=""
+
+if [[ -z ${1:-} ]] ; then
     USAGE
 elif [[ -n ${2:-} ]]; then
     search=${1}
     shift
-    rg --files-with-matches -0 "${search}" -g '!vendor/' $* | xargs -0 -o vim
+    rg --files-with-matches -0 "${search}" -g '!vendor/' "$@" | xargs -0 -o vim
 else
-    rg --files-with-matches -0 "${1}" -g '!vendor/' | xargs -0 -o vim
+    search=${1}
+    rg --files-with-matches -0 "${search}" -g '!vendor/' . | xargs -0 -o vim
 fi
