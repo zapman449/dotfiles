@@ -1,1 +1,15 @@
-openssl rand -base64 22 | tr '[+=/]' '[123]'
+#!/bin/bash
+
+set -euo pipefail
+
+length="${1:-32}"
+
+if ! [[ "$length" =~ ^[0-9]+$ ]] || (( length >= 100 )); then
+    echo "usage: new-passwd [length<100]" >&2
+    exit 1
+fi
+
+nonambiguous_characters='ACDEFHJKMNPQRTUVWXYacdefhijkmnprstuvwxyz013478'
+
+passwd="$(LC_ALL=C tr -dc "${nonambiguous_characters}" < /dev/urandom | head -c "$length" || true)"
+echo "$passwd"
