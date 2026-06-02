@@ -46,3 +46,31 @@ if [[ "${UNAME}" == "Darwin" ]]; then
 
     stow glow "--target=${HOME}/Library/Preferences/glow"
 fi
+
+echo "---> setup git aliases (phase 3)"
+
+unadd=$(git config --global --get alias.unadd || true)
+if [[ ${unadd} == "restore --staged" ]]; then
+    echo "git unadd already setup"
+else
+    git config --global alias.unadd 'restore --staged'
+fi
+
+unamestr=$(uname)
+if [[ ${unamestr} == "Darwin" ]]; then
+
+    echo "---> setup macos defaults (phase 4)"
+
+    pressandhold=$(defaults read -g ApplePressAndHoldEnabled)
+    if [[ ${pressandhold} == "1" ]]; then
+        defaults write -g ApplePressAndHoldEnabled -bool false
+        echo "---> amended PressAndHold semantics"
+    fi
+
+    rearrangespaces=$(defaults read com.apple.dock mru-spaces)
+    if [[ ${rearrangespaces} == "1" ]]; then
+        defaults write com.apple.dock mru-spaces -bool false
+        killall Dock
+        echo "---> disabled macos rearranging spaces"
+    fi
+fi
