@@ -3,9 +3,9 @@
 
 # ghostty integration
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-  autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-  ghostty-integration
-  unfunction ghostty-integration
+    autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+    ghostty-integration
+    unfunction ghostty-integration
 fi
 
 # force uniqueness on all entries in path/PATH
@@ -87,9 +87,9 @@ zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
+    compinit
 else
-  compinit -C
+    compinit -C
 fi
 
 # make ctrl-w break words on slash as well as space
