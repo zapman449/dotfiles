@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-cd ~/Development/cloud-cd-lambdas/utilities/dump-autodeploy-pr-queue
-go build
-./dump-autodeploy-pr-queue -l --environment production
