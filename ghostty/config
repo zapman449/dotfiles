@@ -13,7 +13,7 @@ macos-non-native-fullscreen = true
 mouse-hide-while-typing = true
 
 # scrollback-limit in bytes, roughly 125,000 lines
-scrollback-limit = 10000000
+scrollback-limit = 50000000
 
 shell-integration = zsh
 shell-integration-features = no-cursor

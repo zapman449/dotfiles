@@ -39,6 +39,7 @@ vim.g.mapleader = ';'
 ---------------------------------
 -- packages
 
+-- NOTE: run `:lua vim.pack.update()` after any changes
 vim.pack.add({
     { src = "https://github.com/cemkagank/apple.nvim",
       version = "bb6a8dcc904da47601836207aa99278c2bdb6025" }, -- locked 2026-06-01
@@ -50,8 +51,10 @@ vim.pack.add({
       version = "d340ade20dfe4ef87e6f9a63b9905be91965b5dc" }, -- locked 2026-06-01
     { src = "https://github.com/karb94/neoscroll.nvim",
       version = "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8" }, -- locked 2026-06-01
-    { src = "https://github.com/rmagatti/gx-extended.nvim",
-      version = "68032ffb37c8e53316eba69b51655d854479fdc1" }, -- locked 2026-06-01
+    -- { src = "https://github.com/rmagatti/gx-extended.nvim",
+    --   version = "68032ffb37c8e53316eba69b51655d854479fdc1" }, -- locked 2026-06-01
+    { src = "https://github.com/zapman449/gx-extended.nvim",
+      version = "c443f4918aa02f1f3a7d3ecd35eb130a5ed0735e" }, -- locked 2026-06-08 - fix enterprise org
 })
 
 -- monkeypatch the is_dark to not follow defaults, since I use variable mode
@@ -109,6 +112,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
 ---------------------------------
 -- LSP config
+
+-- Disable legacy Python remote-plugin support.
+-- Pyright and Python Tree-sitter do not require this.
+vim.g.loaded_python3_provider = 0
 
 vim.lsp.enable('bashls')
 vim.lsp.enable('gopls')

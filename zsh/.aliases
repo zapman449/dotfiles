@@ -1,6 +1,9 @@
 alias baty="bat -l yaml"
 alias batj="bat -l json"
 
+# I need fd to chase hidden files and ignore .gitignore
+alias fd='fd --unrestricted'
+
 unalias l 2>/dev/null
 unalias ll 2>/dev/null
 unalias ls 2>/dev/null
