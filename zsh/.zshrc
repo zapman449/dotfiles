@@ -1,6 +1,31 @@
 # enable profiling (NOTE: also requires `zprof` to be called at the bottom
 # zmodload zsh/zprof
 
+#######################################################
+# load Square specific zshrc; please don't change this bit.
+#######################################################
+# if [[ -f ~/Development/config_files/square/zshrc ]]; then
+#     source ~/Development/config_files/square/zshrc
+# fi
+#######################################################
+
+###########################################
+# Feel free to make your own changes below.
+###########################################
+
+# uncomment to automatically `bundle exec` common ruby commands
+# if [[ -s "$SQUARE_HOME/config_files/square/bundler-exec.sh" ]]; then
+#   source $SQUARE_HOME/config_files/square/bundler-exec.sh
+# fi
+
+# load the aliases in config_files files (optional)
+# if [[ -s ~/Development/config_files/square/aliases ]]; then
+#     source ~/Development/config_files/square/aliases
+# fi
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
+
 # ghostty integration
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
     autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
@@ -125,9 +150,6 @@ function manpdf {
 # ~/bin/vim is a symlink to "correct vim".  Currently it's neovim 0.12
 export EDITOR=~/bin/vim
 
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
-
 # use fzf for history searching
 if (( $+commands[fzf] )); then
     source <(fzf --zsh)
@@ -151,6 +173,13 @@ fi
 if [[ -f ~/.zshrc ]] && [[ ! -L ~/.zshrc ]]; then
     echo "WARNING: ~/.zshrc is no longer a symlink"
 fi
+
+export NODE_EXTRA_CA_CERTS=/opt/homebrew/etc/ca-certificates/cert.pem
+export COREPACK_NPM_REGISTRY=https://global.block-artifacts.com/artifactory/api/npm/square-npm/
+export COREPACK_INTEGRITY_KEYS=0
+export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # report profiling data (NOTE: also requires `zmodload zsh/zprof` to be called at the top
 # zprof
