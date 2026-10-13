@@ -2,8 +2,13 @@
 theme = Apple System Colors
 window-theme = system
 macos-titlebar-style = tabs
+window-show-tab-bar = always
 unfocused-split-opacity = 0.6
 font-family = JetBrains Mono
+
+# version update channel:
+# auto-update-channel = main
+auto-update-channel = tip
 
 copy-on-select = clipboard
 focus-follows-mouse = true
