@@ -7,8 +7,8 @@ unfocused-split-opacity = 0.6
 font-family = JetBrains Mono
 
 # version update channel:
-# auto-update-channel = main
-auto-update-channel = tip
+auto-update-channel = stable
+# auto-update-channel = tip
 
 copy-on-select = clipboard
 focus-follows-mouse = true

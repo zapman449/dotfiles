@@ -111,11 +111,7 @@ zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-
 zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-    compinit
-else
-    compinit -C
-fi
+compinit
 
 # make ctrl-w break words on slash as well as space
 my-backward-delete-word() {
